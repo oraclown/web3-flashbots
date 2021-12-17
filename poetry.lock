@@ -49,6 +49,14 @@ python-versions = ">=3.6"
 typing-extensions = ">=3.6.5"
 
 [[package]]
+name = "atom"
+version = "0.7.0"
+description = "Memory efficient Python objects"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "atomicwrites"
 version = "1.4.0"
 description = "Atomic file writes."
@@ -131,10 +139,21 @@ python-versions = ">=3.5.0"
 unicode_backport = ["unicodedata2"]
 
 [[package]]
+name = "clamfig"
+version = "0.1.3"
+description = "Serialization/Deserialization for dataclasses"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+pyyaml = "*"
+
+[[package]]
 name = "click"
 version = "8.0.3"
 description = "Composable command line interface toolkit"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -145,7 +164,7 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -492,6 +511,21 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "pydantic"
+version = "1.8.2"
+description = "Data validation and settings management using python 3.6 type hinting"
+category = "main"
+optional = false
+python-versions = ">=3.6.1"
+
+[package.dependencies]
+typing-extensions = ">=3.7.4.3"
+
+[package.extras]
+dotenv = ["python-dotenv (>=0.10.4)"]
+email = ["email-validator (>=1.0.3)"]
+
+[[package]]
 name = "pyparsing"
 version = "3.0.6"
 description = "Python parsing module"
@@ -567,7 +601,7 @@ python-versions = "*"
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -622,6 +656,34 @@ description = "Python 2 and 3 compatibility utilities"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "telliot-core"
+version = "0.0.7"
+description = "Telliot is a Python framework for interacting with the decentralized TellorX network."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+atom = "0.7.0"
+clamfig = "*"
+click = "*"
+PyYAML = "*"
+requests = "*"
+web3 = "*"
+
+[[package]]
+name = "telliot-feed-examples"
+version = "0.0.8"
+description = "Contains examples and plugins for reporting to the TellorX Oracle."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+pydantic = "*"
+telliot-core = ">=0.0.7"
 
 [[package]]
 name = "toml"
@@ -751,7 +813,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "19ebddf901c158c7ae00eabce3a9332af4f9438a108544d30e0b4f5b67cf11ed"
+content-hash = "dbe1328fc92c27a4e9ecd2efb6c7c9f5a2451ff9a6800c49db1bdce97f4571ae"
 
 [metadata.files]
 aiohttp = [
@@ -840,6 +902,37 @@ async-timeout = [
     {file = "async-timeout-4.0.1.tar.gz", hash = "sha256:b930cb161a39042f9222f6efb7301399c87eeab394727ec5437924a36d6eef51"},
     {file = "async_timeout-4.0.1-py3-none-any.whl", hash = "sha256:a22c0b311af23337eb05fcf05a8b51c3ea53729d46fb5460af62bee033cec690"},
 ]
+atom = [
+    {file = "atom-0.7.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:f9bd715a3a167a93832b029a294a1167b8ea1b7165cd5632a8513ca47b71d75a"},
+    {file = "atom-0.7.0-cp310-cp310-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:d76430816bc418108101083984e536404e9645f9acb13d54d0f09910db9114a7"},
+    {file = "atom-0.7.0-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:0221f845552ea55fa3d27fd0ee61a0b417ceb1f2af1774ee3fa07830932fe929"},
+    {file = "atom-0.7.0-cp310-cp310-musllinux_1_1_i686.whl", hash = "sha256:2cd4d6599d9bcab1ce5af0546ce6cda197eb287e1daea8589bf78f9c911ea20f"},
+    {file = "atom-0.7.0-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:20916b65fc2aa1229ad1c01581753766940823461582e970dd0a565f89606aac"},
+    {file = "atom-0.7.0-cp310-cp310-win32.whl", hash = "sha256:bb1b9a15c8fed0d94b191c9a460e4731ad56df36e61ef450c280a0df32f264d7"},
+    {file = "atom-0.7.0-cp310-cp310-win_amd64.whl", hash = "sha256:dcb753cd868613b5702594510ce2578f543782935807a8e69ff3078c5c0e4b4c"},
+    {file = "atom-0.7.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:090fc10240cb777c61608f71fa698aca8e62008329392e490b2909ad959c9154"},
+    {file = "atom-0.7.0-cp37-cp37m-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:33d678327f65556f8f4b34e45c98453dc12eced7d4d1c1a8a2f35451dcda05a7"},
+    {file = "atom-0.7.0-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:0c7ce2bc2a2fe35ea596bd2c9c823c5107267ad9dae23de88289dd0a0faabf79"},
+    {file = "atom-0.7.0-cp37-cp37m-musllinux_1_1_i686.whl", hash = "sha256:3dfd188849324f1b528020af9728e02ba79c1b9301a66de1fe7657d8aac685b9"},
+    {file = "atom-0.7.0-cp37-cp37m-musllinux_1_1_x86_64.whl", hash = "sha256:d4f8b2fe3f7f0d0d36c371c681559bb7e5ebb6204dcdfed8618705997817261e"},
+    {file = "atom-0.7.0-cp37-cp37m-win32.whl", hash = "sha256:c975362541d758c7a5dedd6eb2f5f21b744a52158245c09e5d700dfe1c2e9fbe"},
+    {file = "atom-0.7.0-cp37-cp37m-win_amd64.whl", hash = "sha256:caeddfa335eae45d768dd8e7df6c8a1013e5c3d5c42068fd04d48333d8e620df"},
+    {file = "atom-0.7.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:38e7da99d9cbf701bf15dab07df2b41273955e42c9d1fcd470d4becf8df03b0c"},
+    {file = "atom-0.7.0-cp38-cp38-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:a9b5e1cdbc6ca51f830a4b4c6f5bd49f19f4b9c11ad6e2135ef093c0781177a8"},
+    {file = "atom-0.7.0-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:1b2349a2682a94e49e2a27bf8b1ea1b2bda4ef0b46c1474e20123b3a2224f588"},
+    {file = "atom-0.7.0-cp38-cp38-musllinux_1_1_i686.whl", hash = "sha256:cab9499592d362ede1f502a89978c1d5c74aaf6d924956fabb4aad07b075e8bf"},
+    {file = "atom-0.7.0-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:5fbadab75ba68a0823bbe3bea7cd95ac1e00e31d52857a7d54e146c53d7ccc03"},
+    {file = "atom-0.7.0-cp38-cp38-win32.whl", hash = "sha256:766d4f7541217e7953ee59c6814adad2cd38a5d6760b04e0c9a8a0a29685e875"},
+    {file = "atom-0.7.0-cp38-cp38-win_amd64.whl", hash = "sha256:136c3da550f7927b95227b2091190295a01ec96674e5b030a4fada27baa27e2b"},
+    {file = "atom-0.7.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:2071092e120fae8c1ed1e3d91e6f395f4ed3953753a50bee2870d4de36cad3cc"},
+    {file = "atom-0.7.0-cp39-cp39-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:acd3126036a480685fa2245f1a17ad3e5caaa783f84c5716b12b9c783fa2899c"},
+    {file = "atom-0.7.0-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:ac665ecc03382f07ac41d2d4471ef34acdaa99a9c2d2503d2999c3de11b4d8e5"},
+    {file = "atom-0.7.0-cp39-cp39-musllinux_1_1_i686.whl", hash = "sha256:e9384eabceecb8b130732dcdce5bbba08b315cf23d81bda63b672097381966c3"},
+    {file = "atom-0.7.0-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:bdf54a388e1a5627759a03ae492b0de272e808040504ea9878c08352b0493a05"},
+    {file = "atom-0.7.0-cp39-cp39-win32.whl", hash = "sha256:8847abae7af4eae6d65ce5da1a57b7d6e7e2fcad03e0c36a88422889d5e26bc1"},
+    {file = "atom-0.7.0-cp39-cp39-win_amd64.whl", hash = "sha256:e081bc2733038fdfd4e28f1b68a4a4bdad7ec0c8dd4e721d08614e3a8f50d564"},
+    {file = "atom-0.7.0.tar.gz", hash = "sha256:4055fbdeeb692d3d52c6e3c628d7513fc71f147920cac7d0da05b6dbb5ec8c8d"},
+]
 atomicwrites = [
     {file = "atomicwrites-1.4.0-py2.py3-none-any.whl", hash = "sha256:6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"},
     {file = "atomicwrites-1.4.0.tar.gz", hash = "sha256:ae70396ad1a434f9c7046fd2dd196fc04b12f9e91ffb859164193be8b6168a7a"},
@@ -865,6 +958,10 @@ certifi = [
 charset-normalizer = [
     {file = "charset-normalizer-2.0.9.tar.gz", hash = "sha256:b0b883e8e874edfdece9c28f314e3dd5badf067342e42fb162203335ae61aa2c"},
     {file = "charset_normalizer-2.0.9-py3-none-any.whl", hash = "sha256:1eecaa09422db5be9e29d7fc65664e6c33bd06f9ced7838578ba40d58bdf3721"},
+]
+clamfig = [
+    {file = "clamfig-0.1.3-py3-none-any.whl", hash = "sha256:75b799c7e8704c3348809584430924143b4ae5217d7b6fefcce2260654d40e69"},
+    {file = "clamfig-0.1.3.tar.gz", hash = "sha256:4c94da909a1d11f0880e10e3fca3142c322bfda6ab02ec5610523f151326275a"},
 ]
 click = [
     {file = "click-8.0.3-py3-none-any.whl", hash = "sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3"},
@@ -1169,6 +1266,30 @@ pycryptodome = [
     {file = "pycryptodome-3.12.0-pp36-pypy36_pp73-win32.whl", hash = "sha256:5d4264039a2087977f50072aaff2346d1c1c101cb359f9444cf92e3d1f42b4cd"},
     {file = "pycryptodome-3.12.0.zip", hash = "sha256:12c7343aec5a3b3df5c47265281b12b611f26ec9367b6129199d67da54b768c1"},
 ]
+pydantic = [
+    {file = "pydantic-1.8.2-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:05ddfd37c1720c392f4e0d43c484217b7521558302e7069ce8d318438d297739"},
+    {file = "pydantic-1.8.2-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:a7c6002203fe2c5a1b5cbb141bb85060cbff88c2d78eccbc72d97eb7022c43e4"},
+    {file = "pydantic-1.8.2-cp36-cp36m-manylinux2014_i686.whl", hash = "sha256:589eb6cd6361e8ac341db97602eb7f354551482368a37f4fd086c0733548308e"},
+    {file = "pydantic-1.8.2-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:10e5622224245941efc193ad1d159887872776df7a8fd592ed746aa25d071840"},
+    {file = "pydantic-1.8.2-cp36-cp36m-win_amd64.whl", hash = "sha256:99a9fc39470010c45c161a1dc584997f1feb13f689ecf645f59bb4ba623e586b"},
+    {file = "pydantic-1.8.2-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:a83db7205f60c6a86f2c44a61791d993dff4b73135df1973ecd9eed5ea0bda20"},
+    {file = "pydantic-1.8.2-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:41b542c0b3c42dc17da70554bc6f38cbc30d7066d2c2815a94499b5684582ecb"},
+    {file = "pydantic-1.8.2-cp37-cp37m-manylinux2014_i686.whl", hash = "sha256:ea5cb40a3b23b3265f6325727ddfc45141b08ed665458be8c6285e7b85bd73a1"},
+    {file = "pydantic-1.8.2-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:18b5ea242dd3e62dbf89b2b0ec9ba6c7b5abaf6af85b95a97b00279f65845a23"},
+    {file = "pydantic-1.8.2-cp37-cp37m-win_amd64.whl", hash = "sha256:234a6c19f1c14e25e362cb05c68afb7f183eb931dd3cd4605eafff055ebbf287"},
+    {file = "pydantic-1.8.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:021ea0e4133e8c824775a0cfe098677acf6fa5a3cbf9206a376eed3fc09302cd"},
+    {file = "pydantic-1.8.2-cp38-cp38-manylinux1_i686.whl", hash = "sha256:e710876437bc07bd414ff453ac8ec63d219e7690128d925c6e82889d674bb505"},
+    {file = "pydantic-1.8.2-cp38-cp38-manylinux2014_i686.whl", hash = "sha256:ac8eed4ca3bd3aadc58a13c2aa93cd8a884bcf21cb019f8cfecaae3b6ce3746e"},
+    {file = "pydantic-1.8.2-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:4a03cbbe743e9c7247ceae6f0d8898f7a64bb65800a45cbdc52d65e370570820"},
+    {file = "pydantic-1.8.2-cp38-cp38-win_amd64.whl", hash = "sha256:8621559dcf5afacf0069ed194278f35c255dc1a1385c28b32dd6c110fd6531b3"},
+    {file = "pydantic-1.8.2-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:8b223557f9510cf0bfd8b01316bf6dd281cf41826607eada99662f5e4963f316"},
+    {file = "pydantic-1.8.2-cp39-cp39-manylinux1_i686.whl", hash = "sha256:244ad78eeb388a43b0c927e74d3af78008e944074b7d0f4f696ddd5b2af43c62"},
+    {file = "pydantic-1.8.2-cp39-cp39-manylinux2014_i686.whl", hash = "sha256:05ef5246a7ffd2ce12a619cbb29f3307b7c4509307b1b49f456657b43529dc6f"},
+    {file = "pydantic-1.8.2-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:54cd5121383f4a461ff7644c7ca20c0419d58052db70d8791eacbbe31528916b"},
+    {file = "pydantic-1.8.2-cp39-cp39-win_amd64.whl", hash = "sha256:4be75bebf676a5f0f87937c6ddb061fa39cbea067240d98e298508c1bda6f3f3"},
+    {file = "pydantic-1.8.2-py3-none-any.whl", hash = "sha256:fec866a0b59f372b7e776f2d7308511784dace622e0992a0b59ea3ccee0ae833"},
+    {file = "pydantic-1.8.2.tar.gz", hash = "sha256:26464e57ccaafe72b7ad156fdaa4e9b9ef051f69e175dbbb463283000c05ab7b"},
+]
 pyparsing = [
     {file = "pyparsing-3.0.6-py3-none-any.whl", hash = "sha256:04ff808a5b90911829c55c4e26f75fa5ca8a2f5f36aa3a51f68e27033341d3e4"},
     {file = "pyparsing-3.0.6.tar.gz", hash = "sha256:d9bdec0013ef1eb5a84ab39a3b3868911598afa494f5faa038647101504e2b81"},
@@ -1342,6 +1463,14 @@ rlp = [
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
+telliot-core = [
+    {file = "telliot_core-0.0.7-py3-none-any.whl", hash = "sha256:91d8d94f90b1e11650b9a14696d8a786fd6c3b04644681f28beb4cfcdf61c957"},
+    {file = "telliot_core-0.0.7.tar.gz", hash = "sha256:f9cec6b60451d88a7e70f4f131e5e64d73dcf68b77e73cd63dd4d7372091c9a1"},
+]
+telliot-feed-examples = [
+    {file = "telliot_feed_examples-0.0.8-py3-none-any.whl", hash = "sha256:644dcab3f7cb98afeeec6c69a1db79abab3e125ec24a39dc79ee06652617bc38"},
+    {file = "telliot_feed_examples-0.0.8.tar.gz", hash = "sha256:cb26f03185b33c6ee7f04e336fea7769d6271e54005ae263789cb18dcb5e9214"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
