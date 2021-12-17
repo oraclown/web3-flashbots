@@ -10,6 +10,9 @@ from flashbots import flashbot
 from web3 import Web3, HTTPProvider
 from web3.exceptions import TransactionNotFound
 from web3.types import TxParams
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 
 def env(key: str) -> str:
@@ -34,6 +37,7 @@ def main() -> None:
     # bundle two EIP-1559 (type 2) transactions, pre-sign one of them
     # NOTE: chainId is necessary for all EIP-1559 txns
     # NOTE: nonce is required for signed txns
+    chain_id = 5
 
     nonce = w3.eth.get_transaction_count(sender.address)
     tx1: TxParams = {
@@ -43,7 +47,7 @@ def main() -> None:
         "maxFeePerGas": Web3.toWei(200, "gwei"),
         "maxPriorityFeePerGas": Web3.toWei(50, "gwei"),
         "nonce": nonce,
-        "chainId": 1,
+        "chainId": chain_id,
     }
     tx1_signed = sender.sign_transaction(tx1)
 
@@ -53,7 +57,7 @@ def main() -> None:
         "gas": 25000,
         "maxFeePerGas": Web3.toWei(200, "gwei"),
         "maxPriorityFeePerGas": Web3.toWei(50, "gwei"),
-        "chainId": 1,
+        "chainId": chain_id,
     }
 
     bundle = [

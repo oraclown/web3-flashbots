@@ -545,6 +545,17 @@ pytest = ">=3.5.0"
 vcrpy = ">=2.0.1"
 
 [[package]]
+name = "python-dotenv"
+version = "0.19.2"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
 name = "pywin32"
 version = "302"
 description = "Python for Window Extensions"
@@ -740,7 +751,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "72b95cfaebc9009a39549af4eaa042744e10a716d0bdd753823c5cfdafb24f3c"
+content-hash = "19ebddf901c158c7ae00eabce3a9332af4f9438a108544d30e0b4f5b67cf11ed"
 
 [metadata.files]
 aiohttp = [
@@ -1192,6 +1203,10 @@ pytest = [
 pytest-recording = [
     {file = "pytest-recording-0.11.0.tar.gz", hash = "sha256:deea1ae6a129c9d8f8669ed7d12539748f00c8f9ef4de4f563055263e47bed08"},
     {file = "pytest_recording-0.11.0-py3-none-any.whl", hash = "sha256:c2cc321f93ceffb2146ead0c51198e4ce86986723265ce6d4a87d3b16071eb85"},
+]
+python-dotenv = [
+    {file = "python-dotenv-0.19.2.tar.gz", hash = "sha256:a5de49a31e953b45ff2d2fd434bbc2670e8db5273606c1e737cc6b93eff3655f"},
+    {file = "python_dotenv-0.19.2-py2.py3-none-any.whl", hash = "sha256:32b2bdc1873fd3a3c346da1c6db83d0053c3c62f28f1f38516070c4c8971b1d3"},
 ]
 pywin32 = [
     {file = "pywin32-302-cp310-cp310-win32.whl", hash = "sha256:251b7a9367355ccd1a4cd69cd8dd24bd57b29ad83edb2957cfa30f7ed9941efa"},
