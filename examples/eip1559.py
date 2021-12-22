@@ -11,6 +11,9 @@ from web3 import Web3, HTTPProvider
 from web3.exceptions import TransactionNotFound
 from web3.types import TxParams
 from dotenv import load_dotenv, find_dotenv
+from flashbots.etherscan_gas import EtherscanGasPriceSource
+import asyncio
+
 
 load_dotenv(find_dotenv())
 
@@ -19,7 +22,7 @@ def env(key: str) -> str:
     return os.environ.get(key)
 
 
-def main() -> None:
+async def main() -> None:
     # account to send the transfer and sign transactions
     sender: LocalAccount = Account.from_key(env("SENDER_PRIVATE_KEY"))
     # account to receive the transfer
@@ -38,14 +41,35 @@ def main() -> None:
     # NOTE: chainId is necessary for all EIP-1559 txns
     # NOTE: nonce is required for signed txns
     chain_id = 5
+    print('chain id:', chain_id)
+
+    # fee_hist = w3.eth.fee_history(
+    #     block_count=10,
+    #     newest_block='pending',
+    # )
+    # oldest_block = fee_hist['oldestBlock']
+    # base_fees = fee_hist['baseFeePerGas']
+
+    # for i in range(10):
+    #     print(f'block: {oldest_block + i}, base fee per gas: {base_fees[i]}')
+    
+    # next_base_fee = base_fees[-1]  # in Wei
+    c = EtherscanGasPriceSource()
+    result = await c.fetch_new_datapoint()
+    next_base_fee = result[0].suggestBaseFee
+    print('next suggested base fee:', next_base_fee)
+    max_priority = result[0].FastGasPrice
+    print('priority fee:', max_priority)
+    max_fee = next_base_fee + max_priority
+    print('max fee:', max_fee)
 
     nonce = w3.eth.get_transaction_count(sender.address)
     tx1: TxParams = {
         "to": receiver.address,
         "value": Web3.toWei(0.01, "ether"),
         "gas": 25000,
-        "maxFeePerGas": Web3.toWei(200, "gwei"),
-        "maxPriorityFeePerGas": Web3.toWei(50, "gwei"),
+        "maxFeePerGas": Web3.toWei(max_fee, "gwei"),
+        "maxPriorityFeePerGas": Web3.toWei(max_priority, "gwei"),
         "nonce": nonce,
         "chainId": chain_id,
     }
@@ -55,8 +79,8 @@ def main() -> None:
         "to": receiver.address,
         "value": Web3.toWei(0.01, "ether"),
         "gas": 25000,
-        "maxFeePerGas": Web3.toWei(200, "gwei"),
-        "maxPriorityFeePerGas": Web3.toWei(50, "gwei"),
+        "maxFeePerGas": Web3.toWei(max_fee, "gwei"),
+        "maxPriorityFeePerGas": Web3.toWei(max_priority, "gwei"),
         "chainId": chain_id,
     }
 
@@ -86,4 +110,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
